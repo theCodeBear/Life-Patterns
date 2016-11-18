@@ -6,9 +6,9 @@ import {Link} from 'react-router';
 
 let Navigator = (props) => (
   <div>
-    <Link to='/'>HOME</Link>
+    <Link to='/'>Landing</Link>
     <br />
-    <Link to='/page2'>Page 2</Link>
+    <Link to='/home'>Home</Link>
   </div>
 );
 

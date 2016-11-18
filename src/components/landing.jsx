@@ -3,11 +3,11 @@ import React from 'react';
 import {render} from 'react-dom';
 import Navigator from './navigator.jsx';
 
-let Page2 = (props) => (
+let Landing = (props) => (
   <div>
     <Navigator />
-    <h1> Page 2 </h1>
+    <h1> Landing </h1>
   </div>
 );
 
-export default Page2;
+export default Landing;
