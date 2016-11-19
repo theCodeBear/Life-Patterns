@@ -9,7 +9,9 @@ class HabitDetail extends React.Component {
 
   render() {
     return (
-      <div>Habit Detail</div>
+      <div>
+        <div>Habit Detail</div>
+      </div>
     );
   }
 }

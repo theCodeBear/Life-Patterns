@@ -6,3 +6,10 @@
   box-shadow: 0 3px 10px 1px gray;
   background-color: whitesmoke;
 }
+
+.item {
+  color: green;
+}
+.item:hover {
+  background-color: black;
+}

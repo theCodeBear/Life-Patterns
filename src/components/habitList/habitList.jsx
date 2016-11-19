@@ -10,29 +10,21 @@ class HabitList extends React.Component {
   constructor(props) {
     super(props);
     this.state = { habitList: store.getState().habitList };
-    this.submitHabit = this.submitHabit.bind(this);
     store.subscribe(() => {
       console.log('new store', store.getState());
       this.setState({habitList: store.getState().habitList});
     });
   }
 
-  submitHabit(e) {
-    e.preventDefault();
-    store.dispatch(addHabit(this.refs.habitName.value));
-    this.refs.habitName.value = '';
-  }
-
   render() {
+    let showAddHabit = false;
+    const showAdd = () => showAddHabit = !showAddHabit;
     return (
       <div className={styles.list}>
         <h2>Habits Tracked</h2>
-        <form onSubmit={this.submitHabit}>
-          <input type='text' ref='habitName' placeholder='New Habit Name' />
-          <button type='submit'>Add Habit</button>
-        </form>
+        <button type='button' onClick={this.props.showHabit}>+</button>
         { !this.state.habitList.length ? <div>Tracking No Habits</div> : '' }
-        { this.state.habitList.map((el,i) => <div key={i}>{el}</div>) }
+        { this.state.habitList.map((el,i) => <div className={styles.item} key={i}>{el}</div>) }
       </div>
     );
   }
