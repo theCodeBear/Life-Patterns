@@ -16,14 +16,12 @@ class HabitList extends React.Component {
   }
 
   render() {
-    let showAddHabit = false;
-    const showAdd = () => showAddHabit = !showAddHabit;
     return (
       <div className={styles.list}>
         <h2>Habits Tracked</h2>
-        <button type='button' onClick={this.props.showHabit}>+</button>
+        <button type='button' onClick={this.props.showAddHabit}>+</button>
         { !this.state.habitList.length ? <div>Tracking No Habits</div> : '' }
-        { this.state.habitList.map((el,i) => <div className={styles.item} key={i}>{el.name}</div>) }
+        { this.state.habitList.map((el,i) => <div className={styles.item} onClick={this.props.habitGraph.bind(this,el.name)} key={i}>{el.name}</div>) }
       </div>
     );
   }
