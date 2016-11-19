@@ -12,7 +12,15 @@ const fakeAddUser = (username) => {
   };
 };
 
+const addHabit = (habit) => {
+  return {
+    type: 'ADD_HABIT',
+    habit: habit
+  };
+};
+
 
 export {
-  fakeAddUser
+  fakeAddUser,
+  addHabit
 };
