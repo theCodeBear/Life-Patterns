@@ -2,7 +2,6 @@
 import React from 'react';
 import {render} from 'react-dom';
 import store from '../../store/createStore';
-import { addHabit } from '../../actions/actions';
 import styles from './habitList.css';
 
 
@@ -24,7 +23,7 @@ class HabitList extends React.Component {
         <h2>Habits Tracked</h2>
         <button type='button' onClick={this.props.showHabit}>+</button>
         { !this.state.habitList.length ? <div>Tracking No Habits</div> : '' }
-        { this.state.habitList.map((el,i) => <div className={styles.item} key={i}>{el}</div>) }
+        { this.state.habitList.map((el,i) => <div className={styles.item} key={i}>{el.name}</div>) }
       </div>
     );
   }

@@ -50,3 +50,7 @@
 .submit:hover {
   border-color: white;
 }
+.invalid:hover {
+  color: darkred;
+  border-color: darkred;
+}

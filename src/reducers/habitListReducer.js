@@ -6,7 +6,10 @@ const habitListReducer = (currentState = [], action) => {
   switch(action.type) {
     case 'ADD_HABIT':
       nextState = currentState.slice();
-      nextState.push(action.habit);
+      nextState.push({
+        name: action.name,
+        dataType: action.dataType
+      });
       return nextState;
     default:
       return currentState;

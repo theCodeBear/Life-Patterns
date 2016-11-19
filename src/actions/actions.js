@@ -15,7 +15,8 @@ const fakeAddUser = (username) => {
 const addHabit = (habit) => {
   return {
     type: 'ADD_HABIT',
-    habit: habit
+    name: habit.name,
+    dataType: habit.dataType
   };
 };
 
