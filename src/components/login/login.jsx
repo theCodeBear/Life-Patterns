@@ -2,8 +2,8 @@
 import React from 'react';
 import {render} from 'react-dom';
 import { browserHistory } from 'react-router';
-import { fakeAddUser } from '../actions/actions';
-import store from '../store/createStore';
+import { fakeAddUser } from '../../actions/actions';
+import store from '../../store/createStore';
 
 
 class Login extends React.Component {

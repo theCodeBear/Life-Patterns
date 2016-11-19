@@ -1,8 +1,9 @@
 'use strict';
 import React from 'react';
 import {render} from 'react-dom';
-import store from '../store/createStore';
-import { addHabit } from '../actions/actions';
+import store from '../../store/createStore';
+import { addHabit } from '../../actions/actions';
+import styles from './habitList.css';
 
 
 class HabitList extends React.Component {
@@ -23,17 +24,8 @@ class HabitList extends React.Component {
   }
 
   render() {
-    let habitListCss = {
-      width: 200,
-      position: 'fixed',
-      top: 95,
-      bottom: 10,
-      boxShadow: '0 3px 10px 1px gray',
-      backgroundColor: 'whitesmoke'
-    };
-
     return (
-      <div style={habitListCss}>
+      <div className={styles.list}>
         <h2>Habits Tracked</h2>
         <form onSubmit={this.submitHabit}>
           <input type='text' ref='habitName' placeholder='New Habit Name' />
