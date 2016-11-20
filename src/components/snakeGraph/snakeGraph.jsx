@@ -12,26 +12,16 @@ class SnakeGraph extends React.Component {
     super(props);
     console.log('store', store.getState());
     this.state = { data: store.getState().habitData[this.props.habit] };
+    this.sortPopulateAndSumNumberGraph = this.sortPopulateAndSumNumberGraph.bind(this);
   }
 
   componentDidMount() {
     this.createSnakeGraph();
   }
 
-  createSnakeGraph() {
-    console.log('d3', d3);
-    const getDate = date => new Date(date);
-    const getValues = data => data.map(el => el.value);
-    let svg = d3.select('#snakeGraph').attr('class', styles['svg-graph']);
-    let path = svg.append('path')
-      .attr('class', styles['line-graph']);
-    let width = 500, height = 100;
-    width = window.innerWidth - 220 - 50;
-    d3.select('#snakeGraph').attr('width', width);
-    let x = d3.scaleTime().range([0, width]);
-
-    let sortedData = this.state.data.slice().sort((a,b) => (a.date < b.date) ? -1 : 1);
-    let allDaysSorted = sortedData.reduce((prev, curr) => {
+  sortPopulateAndSumNumberGraph(data) {
+    let sortedData = data.slice().sort((a,b) => (a.date < b.date) ? -1 : 1);
+    return sortedData.reduce((prev, curr) => {
       if (!prev.length) return prev.concat(curr);
       let prevOne = prev[prev.length-1];
       let missingDaysCount = moment(curr.date).diff(prevOne.date, 'days') - 1;
@@ -48,7 +38,22 @@ class SnakeGraph extends React.Component {
         return prev;
       } else return prev.concat(curr);
     },[]);
-    allDaysSorted.map(el => console.log(`date: ${el.date}, value: ${el.value}`));
+  }
+
+  createSnakeGraph() {
+    console.log('d3', d3);
+    const getDate = date => new Date(date);
+    const getValues = data => data.map(el => el.value);
+    let svg = d3.select('#snakeGraph').attr('class', styles['svg-graph']);
+    let path = svg.append('path')
+      .attr('class', styles['line-graph']);
+    let width = 500, height = 100;
+    width = window.innerWidth - 220 - 50;
+    d3.select('#snakeGraph').attr('width', width);
+    let x = d3.scaleTime().range([0, width]);
+
+    let dataReady = this.sortPopulateAndSumNumberGraph(this.state.data);
+    dataReady.map(el => console.log(`date: ${el.date}, value: ${el.value}`));
 
     // const getDates = data => data.map(el => el.date);
     // let dates = getDates(this.state.data);
@@ -57,7 +62,7 @@ class SnakeGraph extends React.Component {
     let twoMonthsAgo = moment().subtract(2, 'months');
     x.domain([twoMonthsAgo, new Date()]);
 
-    let values = getValues(allDaysSorted);
+    let values = getValues(dataReady);
     let most = d3.max(values);
     let least = d3.min(values);
 
@@ -78,7 +83,7 @@ class SnakeGraph extends React.Component {
       .y(d => y(d.value))
       .curve(d3.curveMonotoneX);
 
-    path.datum(allDaysSorted).attr('d', line);
+    path.datum(dataReady).attr('d', line);
 
     svg.append('g')
       .attr('class', styles.axis)
