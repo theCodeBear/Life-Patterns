@@ -16,7 +16,7 @@ class HabitDetail extends React.Component {
           this.props.habit ?
             <div>
               <div>{this.props.habit}</div>
-              <SnakeGraph />
+              <SnakeGraph habit={this.props.habit} />
               <MainGraph />
             </div>
           :
