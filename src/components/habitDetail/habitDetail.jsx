@@ -15,7 +15,7 @@ class HabitDetail extends React.Component {
         {
           this.props.habit ?
             <div>
-              <div>{this.props.habit}</div>
+              <h2 className='text-center'>{this.props.habit}</h2>
               <SnakeGraph habit={this.props.habit} />
               <MainGraph />
             </div>
