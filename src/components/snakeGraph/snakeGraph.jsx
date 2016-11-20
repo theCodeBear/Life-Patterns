@@ -20,63 +20,78 @@ class SnakeGraph extends React.Component {
 
   createSnakeGraph() {
     console.log('d3', d3);
-    const getDate = (date) => new Date(date);
-    const getDates = data => data.map(el => el.date);
+    const getDate = date => new Date(date);
     const getValues = data => data.map(el => el.value);
     let svg = d3.select('#snakeGraph').attr('class', styles['svg-graph']);
     let path = svg.append('path')
       .attr('class', styles['line-graph']);
-    let width = 500, height = 150;
+    let width = 500, height = 100;
     width = window.innerWidth - 220 - 50;
-    console.log('width', width);
     d3.select('#snakeGraph').attr('width', width);
     let x = d3.scaleTime().range([0, width]);
+
+    let sortedData = this.state.data.slice().sort((a,b) => (a.date < b.date) ? -1 : 1);
+    let allDaysSorted = sortedData.reduce((prev, curr) => {
+      if (!prev.length) return prev.concat(curr);
+      let prevDate = prev[prev.length-1].date;
+      let missingDaysCount = moment(curr.date).diff(prevDate, 'days') - 1;
+      if (missingDaysCount > 0) {
+        let diff = Array.from(Array(missingDaysCount)).map((el,i) => i+1);
+        return prev.concat(diff.map(el => {
+          return {
+            date: moment(prevDate).add(el,'days').format('MM/DD/YYYY'),
+            value: 0
+          };
+        }), curr);
+      } else return prev.concat(curr);
+    },[]);
+    allDaysSorted.map(el => console.log(`date: ${el.date}, value: ${el.value}`));
+
+    // const getDates = data => data.map(el => el.date);
     // let dates = getDates(this.state.data);
     // let earliest = d3.min(dates);
     // x.domain([new Date(earliest), new Date()]);
     let twoMonthsAgo = moment().subtract(2, 'months');
     x.domain([twoMonthsAgo, new Date()]);
 
-    let values = getValues(this.state.data);
+    let values = getValues(allDaysSorted);
     let most = d3.max(values);
     let least = d3.min(values);
-    console.log('most', most);
 
     let y = d3.scaleLinear().range([height, 0]);
-    y.domain([least, most]);
+    y.domain([ least-((most-least)/10), most+((most-least)/10) ]);
 
-    // let xAxis = d3.axisBottom()
-    //   .scale(x)
-      // .tickSize(10)
-      // .ticks(5);
-    // let yAxis = d3.axisLeft()
-    //   .scale(y)
-    //   .tickSize(10)
-    //   .ticks(1);
+    let xAxis = d3.axisBottom()
+      .scale(x)
+      .tickSize(0)
+      .ticks(2);
+    let yAxis = d3.axisLeft()
+      .scale(y)
+      .tickSize(0)
+      .ticks(2);
 
     let line = d3.line()
       .x(d => x(getDate(d.date)))
       .y(d => y(d.value))
-      .curve(d3.curveBasis);
+      .curve(d3.curveMonotoneX);
 
-    path.datum(this.state.data).attr('d', line);
+    path.datum(allDaysSorted).attr('d', line);
 
     svg.append('g')
+      .attr('class', styles.axis)
       .attr('transform', `translate(0,${height})`)
-      // .call(xAxis);
-    svg.append('g')//.call(yAxis);
+      .call(xAxis);
+    svg.append('g')
+      .attr('class', styles.axis)
+      .call(yAxis);
   }
 
   render() {
     console.log('snake state', this.state);
     return (
       <div>
-        <svg id='snakeGraph' height='150'>
+        <svg id='snakeGraph' height='125'>
           <defs id='defs'>
-            {/*<linearGradient id="MyGradient">
-              <stop offset="5%" stopColor="#36F" />
-              <stop offset="95%" stopColor="#FF6" />
-            </linearGradient>*/}
             <linearGradient id="RectGradient" x1="0" x2="0" y1="1" y2="0">
               <stop offset="10%" stopColor="#d6e685"></stop>
               <stop offset="33%" stopColor="#8cc665"></stop>

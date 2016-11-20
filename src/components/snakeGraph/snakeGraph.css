@@ -11,3 +11,11 @@
   stroke: url('#RectGradient');
   stroke-width: 2;
 }
+
+.axis * {
+  stroke: white;
+}
+
+.axis path {
+  stroke: none;
+}
