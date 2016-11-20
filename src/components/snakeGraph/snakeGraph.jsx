@@ -33,16 +33,19 @@ class SnakeGraph extends React.Component {
     let sortedData = this.state.data.slice().sort((a,b) => (a.date < b.date) ? -1 : 1);
     let allDaysSorted = sortedData.reduce((prev, curr) => {
       if (!prev.length) return prev.concat(curr);
-      let prevDate = prev[prev.length-1].date;
-      let missingDaysCount = moment(curr.date).diff(prevDate, 'days') - 1;
+      let prevOne = prev[prev.length-1];
+      let missingDaysCount = moment(curr.date).diff(prevOne.date, 'days') - 1;
       if (missingDaysCount > 0) {
         let diff = Array.from(Array(missingDaysCount)).map((el,i) => i+1);
         return prev.concat(diff.map(el => {
           return {
-            date: moment(prevDate).add(el,'days').format('MM/DD/YYYY'),
+            date: moment(prevOne.date).add(el,'days').format('MM/DD/YYYY'),
             value: 0
           };
         }), curr);
+      } else if (prevOne.date === curr.date) {
+        prevOne.value += curr.value;
+        return prev;
       } else return prev.concat(curr);
     },[]);
     allDaysSorted.map(el => console.log(`date: ${el.date}, value: ${el.value}`));

@@ -20,8 +20,8 @@ const initialState = {
       { date: '11/12/2016', value: 199 },
       { date: '11/13/2016', value: 130 },
       { date: '11/17/2016', value: 178 },
-      { date: '11/18/2016', value: 250 }
-      
+      { date: '11/18/2016', value: 250 },
+      { date: '11/03/2016', value: 208 }
     ]
   }
 };
