@@ -1,7 +1,6 @@
 'use strict';
 import React from 'react';
 import {render} from 'react-dom';
-import Navigator from '../navigator/navigator.jsx';
 import store from '../../store/createStore';
 import HabitList from '../habitList/habitList.jsx';
 import HabitDetail from '../habitDetail/habitDetail.jsx';
@@ -42,7 +41,6 @@ class Home extends React.Component {
     console.log('state changed in home', this.state);
     return (
       <div>
-        <Navigator />
         <h1> Home {store.getState().user.name} </h1>
         <div>
           <HabitList showAddHabit={this.toggleAddHabitForm} habitGraph={this.displayHabitData}/>
