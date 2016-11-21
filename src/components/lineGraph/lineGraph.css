@@ -1,0 +1,5 @@
+.lineGraph {
+  fill: none;
+  stroke: url('#RectGradient');
+  stroke-width: 2;
+}

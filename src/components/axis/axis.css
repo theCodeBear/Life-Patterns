@@ -1,0 +1,7 @@
+.axis * {
+  stroke: white;
+}
+
+.axis path {
+  stroke: none;
+}

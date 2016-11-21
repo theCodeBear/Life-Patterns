@@ -23,7 +23,6 @@ class Home extends React.Component {
   }
 
   toggleHabitEntryForm() {
-    console.log('in toggle entry form');
     this.setState({showHabitEntryForm: !this.state.showHabitEntryForm});
   }
 
@@ -38,7 +37,7 @@ class Home extends React.Component {
   }
 
   render() {
-    console.log('state changed in home', this.state);
+    console.log('RERENDER HOME');
     return (
       <div>
         <h1> Home {store.getState().user.name} </h1>
@@ -46,7 +45,7 @@ class Home extends React.Component {
           <HabitList showAddHabit={this.toggleAddHabitForm} habitGraph={this.displayHabitData}/>
         </div>
         <div className={styles['habit-detail-container']}>
-          <HabitDetail habit={this.state.viewingHabit} toggleHabitEntry={this.toggleHabitEntryForm} />
+          <HabitDetail habit={this.state.viewingHabit} data={store.getState().habitData[this.state.viewingHabit]} toggleHabitEntry={this.toggleHabitEntryForm} />
         </div>
         { this.state.showAddHabitForm ? <AddHabitForm closeAddHabit={this.toggleAddHabitForm} /> : '' }
         { this.state.showHabitEntryForm ? <RecordEntry habit={this.state.viewingHabit} dataType={this.getHabitData()} closeHabitEntry={this.toggleHabitEntryForm} /> : '' }

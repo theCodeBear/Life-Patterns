@@ -13,11 +13,16 @@ class SnakeGraph extends React.Component {
     console.log('store', store.getState());
     this.state = { data: store.getState().habitData[this.props.habit] };
     this.sortPopulateAndSumNumberGraph = this.sortPopulateAndSumNumberGraph.bind(this);
+    // store.subscribe(() => {
+    //   console.log('in snake graph, store changed', store.getState());
+    //   this.setState({data: store.getState().habitData[this.props.habit]});
+    // });
   }
 
   componentDidMount() {
     this.createSnakeGraph();
   }
+
 
   sortPopulateAndSumNumberGraph(data) {
     let sortedData = data.slice().sort((a,b) => (a.date < b.date) ? -1 : 1);
@@ -42,18 +47,24 @@ class SnakeGraph extends React.Component {
 
   createSnakeGraph() {
     console.log('d3', d3);
+
     const getDate = date => new Date(date);
     const getValues = data => data.map(el => el.value);
-    let svg = d3.select('#snakeGraph').attr('class', styles['svg-graph']);
+
+    let svg = d3.select('#snakeGraph');
+
     let path = svg.append('path')
       .attr('class', styles['line-graph']);
-    let width = 500, height = 100;
-    width = window.innerWidth - 220 - 50;
+
+    let height = 100;
+    let width = window.innerWidth - 220 - 50;
+
     d3.select('#snakeGraph').attr('width', width);
+
     let x = d3.scaleTime().range([0, width]);
 
     let dataReady = this.sortPopulateAndSumNumberGraph(this.state.data);
-    dataReady.map(el => console.log(`date: ${el.date}, value: ${el.value}`));
+    // dataReady.map(el => console.log(`date: ${el.date}, value: ${el.value}`));
 
     // const getDates = data => data.map(el => el.date);
     // let dates = getDates(this.state.data);
@@ -98,7 +109,7 @@ class SnakeGraph extends React.Component {
     console.log('snake state', this.state);
     return (
       <div>
-        <svg id='snakeGraph' height='125'>
+        <svg id='snakeGraph' className={styles['svg-graph']} height='125'>
           <defs id='defs'>
             <linearGradient id="RectGradient" x1="0" x2="0" y1="1" y2="0">
               <stop offset="10%" stopColor="#d6e685"></stop>

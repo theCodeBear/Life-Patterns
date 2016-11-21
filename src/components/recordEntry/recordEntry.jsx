@@ -50,7 +50,8 @@ class RecordEntry extends React.Component {
 
   updateNumber(e) {
     console.log('value', e.target.value);
-    this.setState({Number: e.target.value});
+    console.log('typeof', typeof +e.target.value);
+    this.setState({Number: +e.target.value});
   }
 
   updateTime(e) {
@@ -108,6 +109,7 @@ class RecordEntry extends React.Component {
   }
 
   recordHabit(e) {
+    console.log('recording habit');
     e.preventDefault();
     console.log('the state', this.state[this.props.dataType]);
     store.dispatch(addEntry({
