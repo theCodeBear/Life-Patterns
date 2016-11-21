@@ -10,3 +10,12 @@ button:hover {
 .text-center {
   text-align: center;
 }
+
+input, textarea {
+  outline: none;
+}
+
+select {
+  outline: none;
+  text-align-last: center;
+}

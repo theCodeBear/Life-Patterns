@@ -39,7 +39,7 @@ class AddHabitForm extends React.Component {
       Completed: 'Record that you did something',
       Number: '+/- 1,000,000,000',
       Duration: 'Hours:Minutes:Seconds',
-      Rating: '0 - 10',
+      Rating: '1 - 10',
       'Time Of Day': 'HH:MM AM/PM',
       Feeling: 'Awful, Bad, Mediocre, Good, Great',
       Money: '+/- $1,000,000,000.00',

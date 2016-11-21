@@ -1,0 +1,52 @@
+.backdrop {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  /*padding-top: 20%;*/
+  background-color: rgba(0,0,0,0.9);
+}
+
+.formContainer {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: white;
+  font-size: 2em;
+  text-align: center;
+  padding-top: 10%;
+}
+
+.submit {
+  color: white;
+  border: 1px solid white;
+  border-radius: 5px;
+}
+
+.textarea {
+  display: block;
+  width: 394px;
+  margin: 0 auto;
+  resize: none;
+  font-size: 0.5em;
+  border: 1px solid white;
+  color: white;
+  background-color: transparent;
+  margin-bottom: 10px;
+}
+
+.input {
+  display: block;
+  font-size: 1em;
+  width: 394px;
+  margin: 0 auto;
+  text-align: center;
+  border: none;
+  border-bottom: 1px solid white;
+  color: white;
+  background-color: transparent;
+  margin-bottom: 10px;
+}

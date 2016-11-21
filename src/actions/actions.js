@@ -20,8 +20,20 @@ const addHabit = (habit) => {
   };
 };
 
+const addEntry = (entry) => {
+  return {
+    type: 'ADD_ENTRY',
+    name: entry.name,
+    dataType: entry.dataType,
+    value: entry.value,
+    note: entry.note,
+    date: entry.date
+  };
+};
+
 
 export {
   fakeAddUser,
-  addHabit
+  addHabit,
+  addEntry
 };

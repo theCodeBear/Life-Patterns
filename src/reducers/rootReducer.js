@@ -3,6 +3,7 @@
 // import sub-reducers here:
 import userReducer from './userReducer';
 import habitListReducer from './habitListReducer';
+import habitDataReducer from './habitdataReducer';
 
 
 const initialState = {
@@ -30,7 +31,7 @@ const rootReducer = (currentState = initialState, action) => {
   var state = {
     user: userReducer(currentState.user, action),
     habitList: habitListReducer(currentState.habitList, action),
-    habitData: currentState.habitData
+    habitData: habitDataReducer(currentState.habitData, action)
   };
   return state;
 };
