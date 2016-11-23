@@ -19,7 +19,6 @@ class LineGraph extends React.Component {
   }
 
   renderLine() {
-    console.log('line graph props', this.props);
     const getDate = date => new Date(date);
     const line = d3.line()
       .x(d => this.props.xScale(getDate(d.date)))

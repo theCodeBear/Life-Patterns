@@ -15,10 +15,9 @@ const height = 100;
 
 store.subscribe(() => {
   console.log('snake 2 - store changed:', store.getState().habitData)
-})
+});
 
-const sortPopulateAndSumNumberGraph = data => {
-  console.log('RUNNING SUM FUNC ****************');
+const sortPopulateNumberGraph = data => {
   let sortedData = data.slice().sort((a,b) => (a.date < b.date) ? -1 : 1);
   sortedData = sortedData.reduce((prev, curr) => {
     if (!prev.length) return prev.concat(curr);
@@ -32,11 +31,6 @@ const sortPopulateAndSumNumberGraph = data => {
           value: 0
         };
       }), curr);
-    } else if (prevOne.date === curr.date) {
-      // console.log('store in sort', store.getState());
-      // debugger;
-      prevOne.value = prevOne.value + curr.value;
-      return prev;
     } else return prev.concat(curr);
   },[]);
   var lastRecordedUntilNow = moment().diff(sortedData[sortedData.length-1].date, 'days');
@@ -67,8 +61,12 @@ const yScale = (data) => {
 
 
 const SnakeGraph2 = (props) => {
-  console.log('SNAKE GRAPH 2 PROPS', props);
-  let data = sortPopulateAndSumNumberGraph(props.data);
+  let rollupData = d3.nest()
+    .key(d => d.date)
+    .rollup(d => d3.sum(d, g => g.value))
+    .entries(props.data);
+  rollupData = rollupData.map(el => { return {date: el.key, value: el.value} });
+  let data = sortPopulateNumberGraph(rollupData);
   const scales = { xScale: xScale(), yScale: yScale(data) };
   return (
     <svg id='snakeGraph2' className={styles.snake2} height='125' width={width}>

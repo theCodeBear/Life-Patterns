@@ -130,6 +130,7 @@ class RecordEntry extends React.Component {
     return (
       <div className={styles.backdrop}>
         <div className={styles.formContainer}>
+          <button onClick={this.props.closeHabitEntry} className={styles.close}>X</button>
           <div style={{fontSize: '1.5em'}}>Record {this.props.habit} Entry</div>
           <form onSubmit={this.recordHabit}>
             {/* date input for month, day, and year inputs, from today back maybe a week or month */}

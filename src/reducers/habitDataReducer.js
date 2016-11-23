@@ -5,8 +5,7 @@ const habitDataReducer = (currentState = {}, action) => {
 
   switch(action.type) {
     case 'ADD_ENTRY':
-      nextState = JSON.parse(JSON.stringify(currentState));
-      console.log('next state', nextState);
+      nextState = currentState;
       nextState[action.name].push({
         value: action.value,
         // note: action.note,

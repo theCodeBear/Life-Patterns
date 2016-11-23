@@ -28,8 +28,7 @@ const initialState = {
 };
 
 const rootReducer = (currentState = initialState, action) => {
-  console.log('STORE IS CHANGEING');
-  var state = {
+  const state = {
     user: userReducer(currentState.user, action),
     habitList: habitListReducer(currentState.habitList, action),
     habitData: habitDataReducer(currentState.habitData, action)

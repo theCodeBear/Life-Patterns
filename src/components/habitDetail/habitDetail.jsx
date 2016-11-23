@@ -13,7 +13,6 @@ class HabitDetail extends React.Component {
   }
 
   render() {
-    console.log('NEW STORE====', store.getState().habitData[this.props.habit]);
     return (
       <div>
         {

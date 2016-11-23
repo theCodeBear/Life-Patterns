@@ -50,3 +50,14 @@
   background-color: transparent;
   margin-bottom: 10px;
 }
+
+.close {
+  color: white;
+  margin-left: 60%;
+  font-size: 1em;
+  border: 1px solid transparent;
+  border-radius: 100%;
+}
+.close:hover {
+  border-color: white;
+}
