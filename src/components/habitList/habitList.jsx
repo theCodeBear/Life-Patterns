@@ -18,10 +18,14 @@ class HabitList extends React.Component {
   render() {
     return (
       <div className={styles.list}>
-        <h2>Habits Tracked</h2>
-        <button type='button' onClick={this.props.showAddHabit}>+</button>
+        <h2 className={styles.habitListTitle}>Your Habits</h2>
+        <button type='button' className={styles.addHabit} onClick={this.props.showAddHabit}>+</button>
         { !this.state.habitList.length ? <div>Tracking No Habits</div> : '' }
-        { this.state.habitList.map((el,i) => <div className={styles.item} onClick={this.props.habitGraph.bind(this,el.name)} key={i}>{el.name}</div>) }
+        {
+          this.state.habitList.map((el,i) =>
+            <div className={styles.item} onClick={this.props.habitGraph.bind(this,el.name)} key={i}>{el.name}</div>
+          )
+        }
       </div>
     );
   }

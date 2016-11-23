@@ -1,15 +1,28 @@
+.habitListTitle {
+  text-align: center;
+}
+
 .list {
   width: 200px;
   position: fixed;
-  top: 95px;
+  top: 60px;
   bottom: 10px;
-  box-shadow: 0 3px 10px 1px gray;
-  background-color: whitesmoke;
+  box-shadow: 0 2px 2px 1px gray;
+  /*background-color: whitesmoke;*/
 }
 
 .item {
-  color: green;
+  color: black;
+  text-align: center;
+  font-size: 2em;
+  font-family: fantasy;
+  font-weight: 100;
 }
 .item:hover {
-  background-color: black;
+  text-shadow: 2px 4px 10px gray;
+  cursor: pointer;
+}
+
+.addHabit {
+  font-size: 1.2em;
 }

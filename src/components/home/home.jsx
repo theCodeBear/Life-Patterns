@@ -6,6 +6,8 @@ import HabitList from '../habitList/habitList.jsx';
 import HabitDetail from '../habitDetail/habitDetail.jsx';
 import AddHabitForm from '../addHabitForm/addHabitForm.jsx';
 import RecordEntry from '../recordEntry/recordEntry.jsx';
+import LifePatterns from '../lifePatterns/lifePatterns.jsx';
+import AccountDropdown from '../accountDropdown/accountDropdown.jsx';
 import styles from './home.css';
 
 class Home extends React.Component {
@@ -37,10 +39,10 @@ class Home extends React.Component {
   }
 
   render() {
-    console.log('RERENDER HOME');
     return (
       <div>
-        <h1> Home {store.getState().user.name} </h1>
+        <LifePatterns />
+        <AccountDropdown />
         <div>
           <HabitList showAddHabit={this.toggleAddHabitForm} habitGraph={this.displayHabitData}/>
         </div>

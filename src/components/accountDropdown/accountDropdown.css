@@ -1,0 +1,7 @@
+.dropdown {
+  position: fixed;
+  font-size: 1.5em;
+  right: 15px;
+  top: 20px;
+  text-transform: uppercase;
+}
