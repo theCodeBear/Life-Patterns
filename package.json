@@ -6,8 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "devbuild": "webpack -d --watch",
-    "prodbuild": "webpack -p",
-    "start": "pushd ./src/; python -m SimpleHTTPServer 9999; popd;"
+    "prodbuild": "webpack --config ./webpack.production.config.js",
+    "start": "pushd ./src/public/; python -m SimpleHTTPServer 9999; popd;",
+    "prod": "pushd ./dist/; python -m SimpleHTTPServer 10000; popd;"
   },
   "repository": {
     "type": "git",
@@ -35,5 +36,9 @@
     "redux": "^3.6.0",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.2"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^4.0.1",
+    "html-webpack-plugin": "^2.24.1"
   }
 }

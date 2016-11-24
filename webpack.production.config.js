@@ -14,7 +14,7 @@ var HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
 module.exports = {
   entry: __dirname + '/src/index.jsx',
   output: {
-    path: __dirname + '/src/public',
+    path: __dirname + '/dist',
     filename: 'bundle.js'
   },
   module: {
